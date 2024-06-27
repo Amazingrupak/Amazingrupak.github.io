@@ -19,7 +19,7 @@
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             body: `cookie_name=16&cookie_value=${encodedCookieValue}&submit=Store+Cookie`
-        })        // URL for the POST request to set initial cookies
+        }).then(response => response.json()).then(data => console.log(data)).catch(error => console.error('Error:', error));    // URL for the POST request to set initial cookies
 
         // First redirect and POST request
         //setTimeout(() => {
