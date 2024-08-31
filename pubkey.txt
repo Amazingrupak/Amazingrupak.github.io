@@ -1,4 +1,0 @@
------BEGIN PUBLIC KEY-----
-MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEgjby9RlKeIlIWGtLYqDHh/sDcckS
-8h5VLEpbYek6vePWPtDvMgEdN8CThJpg6xL9a3SsArh2fUhS89ccl9Qirg==
------END PUBLIC KEY-----
